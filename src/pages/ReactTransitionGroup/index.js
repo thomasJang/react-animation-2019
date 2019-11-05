@@ -1,15 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group';
-import random from 'random-name'
-import Button from './button'
-import Item from './item'
-import './style.css';
+import React, { Component } from "react";
+import { CSSTransitionGroup } from "react-transition-group";
+import random from "random-name";
+import Button from "./button";
+import Item from "./item";
+import "./style.css";
 
 export default class ReactTransitionGroup extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { items: ['Natividad Steen'] };
+    this.state = { items: ["Natividad Steen"] };
     this.handleAdd = this.handleAdd.bind(this);
   }
 
@@ -22,21 +21,24 @@ export default class ReactTransitionGroup extends Component {
   handleRemove(i) {
     let newItems = this.state.items.slice();
     newItems.splice(i, 1);
-    this.setState({items: newItems});
+    this.setState({ items: newItems });
   }
 
   render() {
     const items = this.state.items.map((item, i) => (
-      <Item item={item} key={i} keyDelete={i} handleRemove={(i) => this.handleRemove(i)} />
+      <Item
+        item={item}
+        key={i}
+        keyDelete={i}
+        handleRemove={i => this.handleRemove(i)}
+      />
     ));
 
     return (
       <div className="react-transition-group">
-        <Button onClick={this.handleAdd}/>
+        <Button onClick={this.handleAdd} />
         <div className="project">
-          <CSSTransitionGroup
-            transitionName="example"
-          >
+          <CSSTransitionGroup transitionName="example">
             {items}
           </CSSTransitionGroup>
         </div>
